@@ -4,19 +4,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{7D3B99E1-6177-422A-8690-2AC3A7DC40AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench-SplitBy", "Bench-SplitBy\Bench-SplitBy.csproj", "{C4E2B9DB-B2D7-48B4-8B82-75B5E4B31769}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_SplitBy", "Bench_SplitBy\Bench_SplitBy.csproj", "{C4E2B9DB-B2D7-48B4-8B82-75B5E4B31769}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionTrees", "ExpressionTrees\ExpressionTrees.csproj", "{0E954502-B9BC-4669-8767-775AA4445C33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench-Dictionaries", "Bench-Dictionaries\Bench-Dictionaries.csproj", "{C50DDDE7-6C15-4F7C-9A78-9D0F6053BADB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_Dictionaries", "Bench_Dictionaries\Bench_Dictionaries.csproj", "{C50DDDE7-6C15-4F7C-9A78-9D0F6053BADB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench-ToStringSelect", "Bench-ToStringSelect\Bench-ToStringSelect.csproj", "{987D0DA2-3579-4E1D-868D-8E788FFD8F83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_ToStringSelect", "Bench_ToStringSelect\Bench_ToStringSelect.csproj", "{987D0DA2-3579-4E1D-868D-8E788FFD8F83}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_List_AddRange", "Bench_List_AddRange\Bench_List_AddRange.csproj", "{84BFEDCA-D971-433F-A28C-A0EE060CE625}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_ListVsSet", "Bench_ListVsSet\Bench_ListVsSet.csproj", "{01520C59-15E7-4EF3-8C48-5A1A97D7CC8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench-SplitBy_Top3", "Bench-SplitBy_Top3\Bench-SplitBy_Top3.csproj", "{397B8C41-06BB-4875-AFD6-B66BB600DB11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_SplitBy_Top3", "Bench_SplitBy_Top3\Bench_SplitBy_Top3.csproj", "{397B8C41-06BB-4875-AFD6-B66BB600DB11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
