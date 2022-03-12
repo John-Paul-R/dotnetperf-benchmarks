@@ -18,6 +18,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_ListVsSet", "Bench_Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_SplitBy_Top3", "Bench_SplitBy_Top3\Bench_SplitBy_Top3.csproj", "{397B8C41-06BB-4875-AFD6-B66BB600DB11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_RemoveAllVsWhereToList", "Bench_RemoveAllVsWhereToList\Bench_RemoveAllVsWhereToList.csproj", "{F2DEA1D5-AB1B-4703-A0B3-1F707466FF06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexVsString", "RegexVsString\RegexVsString.csproj", "{7182F18E-7471-4198-9FAC-5897B3ADB7B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_PropertyAccessors", "Bench_PropertyAccessors\Bench_PropertyAccessors.csproj", "{CBBDFBD7-5539-433E-B5D1-EEABA9BFD7D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +66,17 @@ Global
 		{397B8C41-06BB-4875-AFD6-B66BB600DB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{397B8C41-06BB-4875-AFD6-B66BB600DB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{397B8C41-06BB-4875-AFD6-B66BB600DB11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2DEA1D5-AB1B-4703-A0B3-1F707466FF06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2DEA1D5-AB1B-4703-A0B3-1F707466FF06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2DEA1D5-AB1B-4703-A0B3-1F707466FF06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2DEA1D5-AB1B-4703-A0B3-1F707466FF06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7182F18E-7471-4198-9FAC-5897B3ADB7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7182F18E-7471-4198-9FAC-5897B3ADB7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7182F18E-7471-4198-9FAC-5897B3ADB7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7182F18E-7471-4198-9FAC-5897B3ADB7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBBDFBD7-5539-433E-B5D1-EEABA9BFD7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBBDFBD7-5539-433E-B5D1-EEABA9BFD7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBBDFBD7-5539-433E-B5D1-EEABA9BFD7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBBDFBD7-5539-433E-B5D1-EEABA9BFD7D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
