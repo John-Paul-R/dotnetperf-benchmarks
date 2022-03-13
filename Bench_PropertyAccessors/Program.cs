@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Reflection;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 
@@ -34,37 +35,43 @@ public class Bench
         return _testObject.MyStringProperty;
     }
 
+    private static readonly PropertyInfo MyStringProperty_PropertyInfo = typeof(MyObject)
+        .GetProperty(nameof(MyObject.MyStringProperty))!;
+
     [Benchmark]
-    public string Reflect_GetProperty_GetValue()
+    public PropertyInfo TimeToGetPropertyInfo()
     {
-        return (string) typeof(MyObject)
-            .GetProperty(nameof(MyObject.MyStringProperty))
-            !.GetValue(_testObject)!;
+        return typeof(MyObject)
+            .GetProperty(nameof(MyObject.MyStringProperty))!;
     }
 
     [Benchmark]
-    public string Reflect_GetProperty_GetAccessors_InvokeFirst()
+    public string Reflect_PropertyInfo_GetValue()
     {
-        return (string) typeof(MyObject)
-            .GetProperty(nameof(MyObject.MyStringProperty))
-            !.GetAccessors()[0]
+        return (string) MyStringProperty_PropertyInfo
+            .GetValue(_testObject)!;
+    }
+
+    [Benchmark]
+    public string Reflect_PropertyInfo_GetAccessors_InvokeFirst()
+    {
+        return (string) MyStringProperty_PropertyInfo
+            .GetAccessors()[0]
             .Invoke(_testObject, Array.Empty<object>())!;
     }
 
     [Benchmark]
-    public string Reflect_GetProperty_GetMethod()
+    public string Reflect_PropertyInfo_GetMethod()
     {
-        return (string) typeof(MyObject)
-            .GetProperty(nameof(MyObject.MyStringProperty))
-            !.GetMethod!
+        return (string) MyStringProperty_PropertyInfo
+            .GetMethod!
             .Invoke(_testObject, Array.Empty<object>())!;
     }
 
     // Precompile delegate from memberinfo
     private static readonly Func<MyObject, string> ReflectionGeneratedAccessor
-        = typeof(MyObject)
-            .GetProperty(nameof(MyObject.MyStringProperty))
-            !.GetMethod!
+        = MyStringProperty_PropertyInfo
+            .GetMethod!
             .CreateDelegate<Func<MyObject, string>>();
     [Benchmark]
     public string Reflect_Precompiled_GetMethod()
@@ -74,27 +81,13 @@ public class Bench
     
     // Precompile delegate from memberinfo
     private static readonly Func<MyObject, string> ReflectionGeneratedAccessorV2
-        = typeof(MyObject)
-            .GetProperty(nameof(MyObject.MyStringProperty))
-            !.GetGetMethod(nonPublic: false)
+        = MyStringProperty_PropertyInfo
+            .GetGetMethod(nonPublic: false)
             !.CreateDelegate<Func<MyObject, string>>();
     [Benchmark]
     public string Reflect_Precompiled_GetGetMethod()
     {
         return ReflectionGeneratedAccessorV2(_testObject);
-    }
-    
-    // Precompile delegate from memberinfo
-    private static readonly Func<MyObject, string> DelegateAccessor
-        = (Func<MyObject, string>) Delegate.CreateDelegate(
-            typeof(Func<MyObject, string>),
-            typeof(MyObject)
-                .GetProperty(nameof(MyObject.MyStringProperty))
-                !.GetGetMethod(nonPublic: false)!);
-    [Benchmark]
-    public string Reflect_PrecompiledV3_Delegate()
-    {
-        return DelegateAccessor(_testObject);
     }
 
     private static readonly Func<MyObject, string> MyStringPropertyAccessor = (obj) => obj.MyStringProperty;
@@ -113,5 +106,4 @@ public class Bench
         return MyStringPropertyExpressionCompiled(_testObject);
     }
 
-    
 }
