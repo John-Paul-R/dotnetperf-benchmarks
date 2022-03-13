@@ -15,7 +15,12 @@ public class Program
 
 public class MyObject
 {
+    private string _stringField  = "UNINITIALIZED FIELD";
     public string MyStringProperty { get; init; } = "UNINITIALIZED PROPERTY";
+
+    public void SetStringField(string val) => _stringField = val; 
+    public string GetStringField() => _stringField;
+
 }
 
 [MemoryDiagnoser]
@@ -27,12 +32,19 @@ public class Bench
     public void Setup()
     {
         _testObject = new MyObject {MyStringProperty = "This is String Property content!"};
+        _testObject.SetStringField("This is String Field content!");
     }
 
     [Benchmark]
     public string PropertyGetter()
     {
         return _testObject.MyStringProperty;
+    }
+
+    [Benchmark]
+    public string SanityCheck()
+    {
+        return _testObject.GetStringField();
     }
 
     private static readonly PropertyInfo MyStringProperty_PropertyInfo = typeof(MyObject)
