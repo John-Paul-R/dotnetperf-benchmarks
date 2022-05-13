@@ -49,8 +49,6 @@ class Program
 [MemoryDiagnoser]
 public class Bench
 {
-    private const int RandSeed = 826528;
-
     [Params(8, 64, 512)]
     public static int TaskCount { get; set; }
 
