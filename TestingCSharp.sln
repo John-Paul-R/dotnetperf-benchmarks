@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeConcurrent", "FakeConcu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeConcurrentDelay", "FakeConcurrentDelay\FakeConcurrentDelay.csproj", "{4C027824-75E9-4D60-9921-4B227475463B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_EnumerableDeferredTaskExec", "Demo_EnumerableDeferredTaskExec\Demo_EnumerableDeferredTaskExec.csproj", "{C6ACFBFB-F90E-4F77-9119-1F02577CC3CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,5 +128,9 @@ Global
 		{4C027824-75E9-4D60-9921-4B227475463B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C027824-75E9-4D60-9921-4B227475463B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C027824-75E9-4D60-9921-4B227475463B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6ACFBFB-F90E-4F77-9119-1F02577CC3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6ACFBFB-F90E-4F77-9119-1F02577CC3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6ACFBFB-F90E-4F77-9119-1F02577CC3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6ACFBFB-F90E-4F77-9119-1F02577CC3CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
