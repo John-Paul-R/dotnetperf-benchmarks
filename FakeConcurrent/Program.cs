@@ -39,7 +39,7 @@ using BenchmarkDotNet.Running;
 //   StdDev    : Standard deviation of all measurements
 //   Gen 0     : GC Generation 0 collects per 1000 operations
 //   Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
-  1 ns      : 1 Nanosecond (0.000000001 sec)
+//   1 ns      : 1 Nanosecond (0.000000001 sec)
 
 class Program
 {
@@ -57,25 +57,25 @@ public class Bench
     [Params(8, 64, 512)]
     public static int TaskCount { get; set; }
 
-    private Task<int>[] Tasks; 
+    private Func<Task<int>>[] Tasks; 
 
     [GlobalSetup]
     public void GlobalSetup()
     {
         Tasks = Enumerable.Range(0, TaskCount)
-            .Select(num => Task.FromResult(num))
+            .Select(num => () => Task.FromResult(num))
             .ToArray();
     }
 
     [Benchmark]
-    public int[] WhenAllResult() => Task.WhenAll(Tasks).Result;
+    public int[] WhenAllResult() => Task.WhenAll(Tasks.Select(f => f.Invoke())).Result;
 
     [Benchmark]
     public async Task<int[]> AwaitSerial()
     {
         int[] results = new int[TaskCount];
         for (int i = 0; i < TaskCount; i++) {
-            results[i] = await Tasks[i];
+            results[i] = await Tasks[i].Invoke();
         }
 
         return results;
@@ -86,7 +86,7 @@ public class Bench
     {
         int[] results = new int[TaskCount];
         for (int i = 0; i < TaskCount; i++) {
-            results[i] = Tasks[i].Result;
+            results[i] = Tasks[i].Invoke().Result;
         }
 
         return results;
