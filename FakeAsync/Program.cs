@@ -10,18 +10,28 @@ using BenchmarkDotNet.Running;
 // DefaultJob : .NET 6.0.0 (6.0.21.52210), X64 RyuJIT
 //
 //
-//     |          Method |     Mean |    Error |   StdDev |  Gen 0 | Allocated |
-//     |---------------- |---------:|---------:|---------:|-------:|----------:|
-//     |           Async | 46.87 ns | 0.878 ns | 0.821 ns | 0.0344 |     144 B |
-//     |      FromResult | 36.38 ns | 0.704 ns | 0.691 ns | 0.0344 |     144 B |
-//     | FromResultAsync | 62.99 ns | 1.135 ns | 1.062 ns | 0.0516 |     216 B |
-//     |            Sync | 22.50 ns | 0.471 ns | 0.524 ns | 0.0172 |      72 B |
+//     |          Method |       Mean |     Error |    StdDev |     Median |  Gen 0 | Allocated |
+//     |---------------- |-----------:|----------:|----------:|-----------:|-------:|----------:|
+//     |           Async | 24.5213 ns | 0.5131 ns | 1.1044 ns | 24.4299 ns | 0.0172 |      72 B |
+//     |      FromResult | 15.3571 ns | 0.3288 ns | 0.4500 ns | 15.3283 ns | 0.0172 |      72 B |
+//     | FromResultAsync | 37.1894 ns | 0.7712 ns | 1.2232 ns | 36.9111 ns | 0.0344 |     144 B |
+//     |            Sync |  0.0046 ns | 0.0069 ns | 0.0065 ns |  0.0005 ns |      - |         - |
+//
+// // * Warnings *
+// ZeroMeasurement
+// Bench.Sync: Default -> The method duration is indistinguishable from the empty method duration
+//
+// // * Hints *
+// Outliers
+// Bench.Async: Default      -> 2 outliers were removed (30.26 ns, 30.82 ns)
+// Bench.FromResult: Default -> 2 outliers were removed (18.69 ns, 19.06 ns)
 //
 // // * Legends *
-//     Mean      : Arithmetic mean of all measurements
+// Mean      : Arithmetic mean of all measurements
 // Error     : Half of 99.9% confidence interval
 // StdDev    : Standard deviation of all measurements
-//     Gen 0     : GC Generation 0 collects per 1000 operations
+// Median    : Value separating the higher half of all measurements (50th percentile)
+// Gen 0     : GC Generation 0 collects per 1000 operations
 // Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
 // 1 ns      : 1 Nanosecond (0.000000001 sec)
 
@@ -56,14 +66,14 @@ public class Bench
         => RandSeed;
 
     [Benchmark]
-    public async Task<int> Async() => await GetNumberAsync();
+    public int Async() => GetNumberAsync().Result;
 
     [Benchmark]
-    public async Task<int> FromResult() => await GetNumberFromResult();
+    public int FromResult() => GetNumberFromResult().Result;
     
     [Benchmark]
-    public async Task<int> FromResultAsync() => await GetNumberFromResultAsync();
+    public int FromResultAsync() => GetNumberFromResultAsync().Result;
 
     [Benchmark]
-    public async Task<int> Sync() => GetNumber();
+    public int Sync() => GetNumber();
 }
