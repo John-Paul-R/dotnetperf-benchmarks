@@ -11,6 +11,7 @@
 //
 // Console.WriteLine("Hello, World!");
 
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 abstract class Shape
@@ -61,6 +62,72 @@ class Program
 
         Console.WriteLine(JsonConvert.SerializeObject(new Rectangle(), Formatting.None));
         Console.WriteLine(JsonConvert.SerializeObject(new Rectangle(), Formatting.Indented));
+        
+        var allObjects = new List<SecureObject>().AsQueryable();
+        var allowedObjects = allObjects.GetWithSecurity("testing");
+
+        
+        var allChildObjects = new List<SecureChildObject>().AsQueryable();
+        var allowedChildObjects = allObjects.GetWithSecurity("testing");
+
+        allChildObjects.Where(o => o.Test_GetAllowedGroups().Contains("the group"));
+
+        Console.WriteLine(8192D);
+        Console.WriteLine(8192.0D);
+        Console.WriteLine(8192);
+        double[] nums = new[] {
+            0,
+            0.1,
+            62.5,
+            8000,
+            16000,
+            8182
+        };
+        Console.WriteLine(string.Join('\n', nums));
+        
+        Console.WriteLine(string.Join('\n', Enum.GetNames(typeof(Names))));
+        
+        Console.WriteLine($"{Names.Cindy} {Names.Cindy.ToString()}");
+
+        string? possiblyNullString = null;//Random.Shared.NextDouble() > 0.5 ? "test" : null;
+
+        var res = possiblyNullString?.Replace(" ", "").ToLower();
     }
 }
 
+public interface ISecureResource
+{
+    public string[] AllowedGroups { get; }
+
+    // public Expression<Func<ISecureResource, string[]>> GetAllowedGroups();
+}
+
+public class SecureObject : ISecureResource
+{
+    public string[] AllowedGroups { get; set; } = new[] {"group01"};
+}
+
+public class SecureChildObject : ISecureResource
+{
+    public SecureObject Parent { get; set; }
+    // Will this work for SQL-converted "Where" clauses?
+    public string[] AllowedGroups => Parent.AllowedGroups;
+
+    public string[] Test_GetAllowedGroups() => Parent.AllowedGroups;
+}
+
+public static class SecureObjectExtensions
+{
+    public static IQueryable<T> GetWithSecurity<T>(
+        this IQueryable<T> queryable,
+        string group) where T : ISecureResource 
+    => queryable.Where(so => so.AllowedGroups.Contains(group));
+}
+
+public enum Names
+{
+    Jeff = 1,
+    [EnumMember(Value = "testing")]
+    Cindy = 1,
+    Qincy = 2,
+}
