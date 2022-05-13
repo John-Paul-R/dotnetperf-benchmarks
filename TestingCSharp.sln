@@ -36,6 +36,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstAndVariable", "ConstAn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeAsync", "FakeAsync\FakeAsync.csproj", "{7E3F4855-178C-4AA6-916F-AC22FB751986}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeConcurrent", "FakeConcurrent\FakeConcurrent.csproj", "{6ED0F48F-971A-405D-9864-D4874F9F15D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeConcurrentDelay", "FakeConcurrentDelay\FakeConcurrentDelay.csproj", "{4C027824-75E9-4D60-9921-4B227475463B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,5 +118,13 @@ Global
 		{7E3F4855-178C-4AA6-916F-AC22FB751986}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E3F4855-178C-4AA6-916F-AC22FB751986}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E3F4855-178C-4AA6-916F-AC22FB751986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ED0F48F-971A-405D-9864-D4874F9F15D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED0F48F-971A-405D-9864-D4874F9F15D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED0F48F-971A-405D-9864-D4874F9F15D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED0F48F-971A-405D-9864-D4874F9F15D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C027824-75E9-4D60-9921-4B227475463B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C027824-75E9-4D60-9921-4B227475463B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C027824-75E9-4D60-9921-4B227475463B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C027824-75E9-4D60-9921-4B227475463B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
