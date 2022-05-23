@@ -55,7 +55,7 @@ public class Bench
     private IEnumerable<Task<int>> Tasks; 
 
     [IterationSetup]
-    public void IteratioNSetup()
+    public void IterationSetup()
     {
         Tasks = Enumerable.Range(0, TaskCount)
             .Select(num => Task.Delay(1).ContinueWith((_) => num));
