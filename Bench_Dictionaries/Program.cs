@@ -12,7 +12,7 @@ using BenchmarkDotNet.Running;
 namespace Bench_ListVsSet
 {
     // See https://stackoverflow.com/questions/16612936/immutable-dictionary-vs-dictionary-vs-c5
-    // for original source of these benchmarks.
+    // for original inspiration for these benchmarks.
 
     public class Container
     {

@@ -1,6 +1,7 @@
 ﻿namespace ConstAndVariable;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+// Relevant sharplab: https://sharplab.io/#gist:83fc46fc28a3b288cf6260e514ac07d2
 // // * Summary *
 //
 // BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1645 (21H2)
