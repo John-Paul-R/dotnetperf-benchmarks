@@ -12,18 +12,21 @@ using BenchmarkDotNet.Running;
 //
 //     |                Method |     Mean |    Error |   StdDev |    Gen0 |   Gen1 | Allocated |
 //     |---------------------- |---------:|---------:|---------:|--------:|-------:|----------:|
-//     |               SplitBy | 13.38 us | 0.101 us | 0.085 us |  3.0670 | 0.7629 |  12.53 KB |
-//     |               GroupBy | 22.72 us | 0.189 us | 0.177 us |  4.1504 | 0.0305 |  16.97 KB |
-//     |              TwoWhere | 16.08 us | 0.321 us | 0.554 us |  3.0823 | 0.0305 |  12.63 KB |
-//     |          WhereExclude | 22.66 us | 0.215 us | 0.191 us |  4.0283 |      - |  16.48 KB |
-//     |       AggregateAppend | 69.50 us | 0.767 us | 0.680 us | 17.8223 | 8.9111 | 109.52 KB |
-//     | AggregateAppendToList | 46.00 us | 0.884 us | 1.180 us | 28.7476 | 0.0610 | 117.48 KB |
+//     |               SplitBy | 13.30 us | 0.093 us | 0.087 us |  3.0670 | 0.0153 |  12.53 KB |
+//     |               GroupBy | 22.65 us | 0.160 us | 0.134 us |  4.1504 | 0.0305 |  16.97 KB |
+//     |              TwoWhere | 16.02 us | 0.298 us | 0.249 us |  3.0823 | 0.0305 |  12.63 KB |
+//     |          WhereExclude | 22.62 us | 0.121 us | 0.107 us |  4.0283 |      - |  16.48 KB |
+//     |       AggregateAppend | 69.11 us | 1.319 us | 1.892 us | 17.8223 | 8.9111 | 109.52 KB |
+//     | AggregateAppendToList | 45.86 us | 0.477 us | 0.423 us | 28.7476 | 0.0610 | 117.48 KB |
+//     |   AggregateAddToLists | 17.26 us | 0.228 us | 0.213 us |  3.0823 | 0.0305 |  12.62 KB |
 //
 // // * Hints *
 //     Outliers
-// Bench.SplitBy: Default         -> 2 outliers were removed (13.66 us, 13.66 us)
-// Bench.WhereExclude: Default    -> 1 outlier  was  removed (23.34 us)
-// Bench.AggregateAppend: Default -> 1 outlier  was  removed (72.08 us)
+// Bench.GroupBy: Default               -> 2 outliers were removed (23.74 us, 23.84 us)
+// Bench.TwoWhere: Default              -> 4 outliers were removed (17.90 us..18.90 us)
+// Bench.WhereExclude: Default          -> 1 outlier  was  removed (23.21 us)
+// Bench.AggregateAppend: Default       -> 7 outliers were removed (77.72 us..79.53 us)
+// Bench.AggregateAppendToList: Default -> 1 outlier  was  removed (48.56 us)
 
 namespace Bench_SplitBy_AggregateEdition;
 
@@ -52,6 +55,22 @@ public static class EnumerableExtensions
         (accum, cur) => splitPredicate(cur)
             ? (accum.Item1.Append(cur), accum.Item2)
             : (accum.Item1, accum.Item2.Append(cur)));
+    
+    public static (List<T> True, List<T> False) SplitByAggregateLists<T>(this IEnumerable<T> source,
+        Predicate<T> splitPredicate)
+        => source.Aggregate(
+            seed: (new List<T>(), new List<T>()),
+            (accum, cur) =>
+            {
+                if (splitPredicate(cur)) {
+                    accum.Item1.Add(cur);
+                } else {
+                    accum.Item2.Add(cur);
+                }
+
+                return accum;
+            });
+
 }
 
 public class Program
@@ -127,5 +146,11 @@ public class Bench
     {
         var res = _testList.SplitByAggregate(Compare);
         return (res.True.ToList(), res.False.ToList());
+    }
+    
+    [Benchmark]
+    public (List<int> True, List<int> False) AggregateAddToLists()
+    {
+        return _testList.SplitByAggregateLists(Compare);
     }
 }
