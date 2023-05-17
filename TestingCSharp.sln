@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_DictVsNestedLoops", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_SplitBy_AggregateEdition", "Bench_SplitBy_AggregateEdition\Bench_SplitBy_AggregateEdition.csproj", "{35568C0D-79AB-4774-BDFB-1FE78B5DB9C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench_ValueDelegate", "Bench_ValueDelegate\Bench_ValueDelegate.csproj", "{829EFF8E-A9DB-405C-89B2-38FB4DA4DBD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -168,5 +170,9 @@ Global
 		{35568C0D-79AB-4774-BDFB-1FE78B5DB9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35568C0D-79AB-4774-BDFB-1FE78B5DB9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35568C0D-79AB-4774-BDFB-1FE78B5DB9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829EFF8E-A9DB-405C-89B2-38FB4DA4DBD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829EFF8E-A9DB-405C-89B2-38FB4DA4DBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829EFF8E-A9DB-405C-89B2-38FB4DA4DBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829EFF8E-A9DB-405C-89B2-38FB4DA4DBD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
