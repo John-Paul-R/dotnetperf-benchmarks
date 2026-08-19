@@ -14,6 +14,7 @@
   <Project Path="Bench_SplitBy_AggregateEdition/Bench_SplitBy_AggregateEdition.csproj" />
   <Project Path="Bench_SplitBy_Top3/Bench_SplitBy_Top3.csproj" />
   <Project Path="Bench_ToStringSelect/Bench_ToStringSelect.csproj" />
+  <Project Path="Bench_TypeIfsVsDict/Bench_TypeIfsVsDict.csproj" />
   <Project Path="Bench_ValueDelegate/Bench_ValueDelegate.csproj" />
   <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
   <Project Path="ConsoleApp2/ConsoleApp2.csproj" />
@@ -25,8 +26,4 @@
   <Project Path="FakeConcurrentDelay/FakeConcurrentDelay.csproj" />
   <Project Path="IdenticalStringCreation/IdenticalStringCreation.csproj" />
   <Project Path="ListRemoveElements/ListRemoveElements.csproj" />
-  <Project Path="ParallelForEachAsync_and_WhenAllBatched/ParallelForEachAsync_and_WhenAllBatched.csproj" />
-  <Project Path="RegexVsString/RegexVsString.csproj" />
-  <Project Path="TemplateDelegate/TemplateDelegate.csproj" />
-  <Project Path="TemplateDelegateV2/TemplateDelegateV2.csproj" />
 </Solution>
