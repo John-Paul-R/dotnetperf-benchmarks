@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "John Paul R",
+  "classifications": ["Benchmark", "BenchmarkDotNet"],
+  "identity": "DotNetPerf.Benchmark",
+  "name": "BenchmarkDotNet Project",
+  "shortName": "bench",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "BenchTemplate",
+  "preferNameDirectory": true,
+  "symbols": {
+    "parameterized": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include a [Params] example with GlobalSetup"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!parameterized)",
+          "exclude": ["Parameterized/**"]
+        },
+        {
+          "condition": "(parameterized)",
+          "exclude": ["Program.cs"]
+        },
+        {
+          "condition": "(parameterized)",
+          "rename": {
+            "Parameterized/Program.cs": "Program.cs"
+          }
+        }
+      ]
+    }
+  ]
+}
