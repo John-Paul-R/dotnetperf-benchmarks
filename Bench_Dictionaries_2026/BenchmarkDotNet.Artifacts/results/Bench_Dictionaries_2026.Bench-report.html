@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Bench_Dictionaries_2026.Bench-20260820-172916</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Linux Arch Linux
+AMD Ryzen 7 5800H with Radeon Graphics 1.10GHz, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 10.0.302
+  [Host]     : .NET 10.0.10 (10.0.10, 10.0.1026.32716), X64 RyuJIT x86-64-v3
+  DefaultJob : .NET 10.0.10 (10.0.10, 10.0.1026.32716), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method        </th><th>MaxItems</th><th>Mean</th><th>Error</th><th>StdDev</th>
+</tr>
+</thead><tbody><tr><td>BaseDictionary</td><td>100</td><td>5.217 &mu;s</td><td>0.0209 &mu;s</td><td>0.0185 &mu;s</td>
+</tr><tr><td>ConcurrentDictionary</td><td>100</td><td>4.371 &mu;s</td><td>0.0385 &mu;s</td><td>0.0341 &mu;s</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>100</td><td>9.034 &mu;s</td><td>0.0286 &mu;s</td><td>0.0223 &mu;s</td>
+</tr><tr><td>FrozenDictionaryT</td><td>100</td><td>5.680 &mu;s</td><td>0.0179 &mu;s</td><td>0.0168 &mu;s</td>
+</tr><tr><td>BaseDictionary</td><td>1000</td><td>7.142 &mu;s</td><td>0.0311 &mu;s</td><td>0.0276 &mu;s</td>
+</tr><tr><td>ConcurrentDictionary</td><td>1000</td><td>7.195 &mu;s</td><td>0.0249 &mu;s</td><td>0.0233 &mu;s</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>1000</td><td>13.516 &mu;s</td><td>0.0759 &mu;s</td><td>0.0634 &mu;s</td>
+</tr><tr><td>FrozenDictionaryT</td><td>1000</td><td>7.948 &mu;s</td><td>0.0404 &mu;s</td><td>0.0378 &mu;s</td>
+</tr><tr><td>BaseDictionary</td><td>10000</td><td>10.571 &mu;s</td><td>0.0580 &mu;s</td><td>0.0543 &mu;s</td>
+</tr><tr><td>ConcurrentDictionary</td><td>10000</td><td>11.513 &mu;s</td><td>0.2249 &mu;s</td><td>0.2104 &mu;s</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>10000</td><td>32.629 &mu;s</td><td>0.6106 &mu;s</td><td>0.8358 &mu;s</td>
+</tr><tr><td>FrozenDictionaryT</td><td>10000</td><td>11.345 &mu;s</td><td>0.1089 &mu;s</td><td>0.0966 &mu;s</td>
+</tr><tr><td>BaseDictionary</td><td>100000</td><td>12.106 &mu;s</td><td>0.0560 &mu;s</td><td>0.0524 &mu;s</td>
+</tr><tr><td>ConcurrentDictionary</td><td>100000</td><td>14.333 &mu;s</td><td>0.1443 &mu;s</td><td>0.1279 &mu;s</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>100000</td><td>107.136 &mu;s</td><td>2.1408 &mu;s</td><td>3.5174 &mu;s</td>
+</tr><tr><td>FrozenDictionaryT</td><td>100000</td><td>15.155 &mu;s</td><td>0.2290 &mu;s</td><td>0.1912 &mu;s</td>
+</tr></tbody></table>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Bench_ListVsSet.Bench-20260820-165734</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Linux Arch Linux
+AMD Ryzen 7 5800H with Radeon Graphics 1.10GHz, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 10.0.302
+  [Host]    : .NET 10.0.10 (10.0.10, 10.0.1026.32716), X64 RyuJIT x86-64-v3
+  .NET 10.0 : .NET 10.0.10 (10.0.10, 10.0.1026.32716), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method        </th><th>Job</th><th>Runtime</th><th>MaxItems</th><th>Mean</th><th>Error</th><th>StdDev</th>
+</tr>
+</thead><tbody><tr><td>BaseDictionary</td><td>.NET 10.0</td><td>.NET 10.0</td><td>100</td><td>4.843 &mu;s</td><td>0.0255 &mu;s</td><td>0.0250 &mu;s</td>
+</tr><tr><td>ConcurrentDictionary</td><td>.NET 10.0</td><td>.NET 10.0</td><td>100</td><td>4.397 &mu;s</td><td>0.0324 &mu;s</td><td>0.0270 &mu;s</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>.NET 10.0</td><td>.NET 10.0</td><td>100</td><td>9.045 &mu;s</td><td>0.0289 &mu;s</td><td>0.0256 &mu;s</td>
+</tr><tr><td>FrozenDictionaryT</td><td>.NET 10.0</td><td>.NET 10.0</td><td>100</td><td>5.645 &mu;s</td><td>0.0286 &mu;s</td><td>0.0223 &mu;s</td>
+</tr><tr><td>BaseDictionary</td><td>.NET 6.0</td><td>.NET 6.0</td><td>100</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>ConcurrentDictionary</td><td>.NET 6.0</td><td>.NET 6.0</td><td>100</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>.NET 6.0</td><td>.NET 6.0</td><td>100</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>FrozenDictionaryT</td><td>.NET 6.0</td><td>.NET 6.0</td><td>100</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>BaseDictionary</td><td>.NET 10.0</td><td>.NET 10.0</td><td>1000</td><td>6.820 &mu;s</td><td>0.0190 &mu;s</td><td>0.0159 &mu;s</td>
+</tr><tr><td>ConcurrentDictionary</td><td>.NET 10.0</td><td>.NET 10.0</td><td>1000</td><td>7.213 &mu;s</td><td>0.0270 &mu;s</td><td>0.0239 &mu;s</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>.NET 10.0</td><td>.NET 10.0</td><td>1000</td><td>14.332 &mu;s</td><td>0.2587 &mu;s</td><td>0.3951 &mu;s</td>
+</tr><tr><td>FrozenDictionaryT</td><td>.NET 10.0</td><td>.NET 10.0</td><td>1000</td><td>7.910 &mu;s</td><td>0.0290 &mu;s</td><td>0.0257 &mu;s</td>
+</tr><tr><td>BaseDictionary</td><td>.NET 6.0</td><td>.NET 6.0</td><td>1000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>ConcurrentDictionary</td><td>.NET 6.0</td><td>.NET 6.0</td><td>1000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>.NET 6.0</td><td>.NET 6.0</td><td>1000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>FrozenDictionaryT</td><td>.NET 6.0</td><td>.NET 6.0</td><td>1000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>BaseDictionary</td><td>.NET 10.0</td><td>.NET 10.0</td><td>10000</td><td>10.257 &mu;s</td><td>0.0523 &mu;s</td><td>0.0437 &mu;s</td>
+</tr><tr><td>ConcurrentDictionary</td><td>.NET 10.0</td><td>.NET 10.0</td><td>10000</td><td>12.021 &mu;s</td><td>0.2334 &mu;s</td><td>0.2952 &mu;s</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>.NET 10.0</td><td>.NET 10.0</td><td>10000</td><td>31.968 &mu;s</td><td>0.6209 &mu;s</td><td>0.8074 &mu;s</td>
+</tr><tr><td>FrozenDictionaryT</td><td>.NET 10.0</td><td>.NET 10.0</td><td>10000</td><td>10.941 &mu;s</td><td>0.0518 &mu;s</td><td>0.0432 &mu;s</td>
+</tr><tr><td>BaseDictionary</td><td>.NET 6.0</td><td>.NET 6.0</td><td>10000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>ConcurrentDictionary</td><td>.NET 6.0</td><td>.NET 6.0</td><td>10000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>.NET 6.0</td><td>.NET 6.0</td><td>10000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>FrozenDictionaryT</td><td>.NET 6.0</td><td>.NET 6.0</td><td>10000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>BaseDictionary</td><td>.NET 10.0</td><td>.NET 10.0</td><td>100000</td><td>12.115 &mu;s</td><td>0.2333 &mu;s</td><td>0.3419 &mu;s</td>
+</tr><tr><td>ConcurrentDictionary</td><td>.NET 10.0</td><td>.NET 10.0</td><td>100000</td><td>14.333 &mu;s</td><td>0.0934 &mu;s</td><td>0.0873 &mu;s</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>.NET 10.0</td><td>.NET 10.0</td><td>100000</td><td>104.273 &mu;s</td><td>1.6923 &mu;s</td><td>1.5002 &mu;s</td>
+</tr><tr><td>FrozenDictionaryT</td><td>.NET 10.0</td><td>.NET 10.0</td><td>100000</td><td>15.094 &mu;s</td><td>0.0806 &mu;s</td><td>0.0630 &mu;s</td>
+</tr><tr><td>BaseDictionary</td><td>.NET 6.0</td><td>.NET 6.0</td><td>100000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>ConcurrentDictionary</td><td>.NET 6.0</td><td>.NET 6.0</td><td>100000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>ImmutableDictionaryT</td><td>.NET 6.0</td><td>.NET 6.0</td><td>100000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr><tr><td>FrozenDictionaryT</td><td>.NET 6.0</td><td>.NET 6.0</td><td>100000</td><td>NA</td><td>NA</td><td>NA</td>
+</tr></tbody></table>
+</body>
+</html>
