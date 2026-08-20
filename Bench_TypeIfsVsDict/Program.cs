@@ -143,6 +143,15 @@ namespace Bench_TypeIfsVsDict
             return last;
         }
 
+        [Benchmark]
+        public string ListLoop()
+        {
+            string last = "";
+            foreach (var t in _sample)
+                last = SqlCastFor_ListLoop(t);
+            return last;
+        }
+
         private static string SqlCastFor_Ifs(Type propType)
         {
             var t = Nullable.GetUnderlyingType(propType) ?? propType;
@@ -249,6 +258,22 @@ namespace Bench_TypeIfsVsDict
             (typeof(TimeOnly),       "::TIME"),
             (typeof(TimeSpan),       "::TIME"),
         ];
+
+        private static string SqlCastFor_ListLoop(Type propType)
+        {
+            var t = Nullable.GetUnderlyingType(propType) ?? propType;
+
+            foreach (var entry in CastList)
+            {
+                if (entry.Type == t)
+                    return entry.Cast;
+            }
+
+            if (t.IsEnum)
+                return "";
+
+            throw new InvalidOperationException($"Unhandled type: {t.FullName}");
+        }
 
         private static string SqlCastFor_ListFind(Type propType)
         {
