@@ -134,6 +134,15 @@ namespace Bench_TypeIfsVsDict
             return last;
         }
 
+        [Benchmark]
+        public string ListFind()
+        {
+            string last = "";
+            foreach (var t in _sample)
+                last = SqlCastFor_ListFind(t);
+            return last;
+        }
+
         private static string SqlCastFor_Ifs(Type propType)
         {
             var t = Nullable.GetUnderlyingType(propType) ?? propType;
@@ -217,6 +226,43 @@ namespace Bench_TypeIfsVsDict
             [typeof(TimeOnly)]       = "::TIME",
             [typeof(TimeSpan)]       = "::TIME",
         }.ToFrozenDictionary();
+
+        private static readonly List<(Type Type, string Cast)> CastList =
+        [
+            (typeof(bool),           "::BOOL"),
+            (typeof(sbyte),          "::INT2"),
+            (typeof(short),          "::INT2"),
+            (typeof(int),            "::INT4"),
+            (typeof(long),           "::INT8"),
+            (typeof(byte),           "::INT2"),
+            (typeof(ushort),         "::INT4"),
+            (typeof(uint),           "::INT8"),
+            (typeof(ulong),          "::NUMERIC"),
+            (typeof(float),          "::FLOAT4"),
+            (typeof(double),         "::FLOAT8"),
+            (typeof(decimal),        "::NUMERIC"),
+            (typeof(string),         ""),
+            (typeof(Guid),           "::UUID"),
+            (typeof(DateTime),       "::TIMESTAMP"),
+            (typeof(DateTimeOffset), "::TIMESTAMPTZ"),
+            (typeof(DateOnly),       "::DATE"),
+            (typeof(TimeOnly),       "::TIME"),
+            (typeof(TimeSpan),       "::TIME"),
+        ];
+
+        private static string SqlCastFor_ListFind(Type propType)
+        {
+            var t = Nullable.GetUnderlyingType(propType) ?? propType;
+
+            var entry = CastList.Find(e => e.Type == t);
+            if (entry.Type is not null)
+                return entry.Cast;
+
+            if (t.IsEnum)
+                return "";
+
+            throw new InvalidOperationException($"Unhandled type: {t.FullName}");
+        }
 
         private static string SqlCastFor_Dict(Type propType)
         {
