@@ -1,31 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Concurrent;
+using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Collections.ObjectModel;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
-namespace Bench_ListVsSet
+namespace Bench_ListVsSet_NUint
 {
-    public class Container
-    {
-        public string A { get; set; }
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<Bench>();
+            BenchmarkRunner.Run<ListVsSet_NUint>();
         }
     }
 
     [SimpleJob(RuntimeMoniker.Net60)]
-    public class Bench
+    public class ListVsSet_NUint
     {
         private const int RandSeed = 826528;
         private const int BenchmarkAccessCount = 1000;
@@ -33,39 +23,28 @@ namespace Bench_ListVsSet
         [Params(4, 8, 16, 32, 64, 128, 256, 512)]
         public int MaxItems { get; set; }
 
-        private const int StrLen = 8;
-        private const int BitCount = StrLen * 6;
-        private const int ByteCount = (BitCount + 7) / 8; // rounded up
+        private List<nuint> _list = null!;
+        private HashSet<nuint> _hashSet = null!;
+        private SortedSet<nuint> _sortedSet = null!;
+        private nuint[] _randomKeys = null!;
 
-        private List<string> _list = null!;
-        private HashSet<string> _hashSet = null!;
-        private SortedSet<string> _sortedSet = null!;
-        private string[] _randomKeys = null!;
-        
-        
         [GlobalSetup]
         public void GlobalSetup()
         {
             var rand = new Random(RandSeed);
 
-            var randStrings = Enumerable.Range(0, MaxItems)
-                .Select(_ =>
-                {
-                    var bytes = new byte[ByteCount];
-                    rand.NextBytes(bytes);
-                    return Convert.ToBase64String(bytes);
-                })
+            var randValues = Enumerable.Range(0, MaxItems)
+                .Select(_ => (nuint)rand.Next())
                 .ToList();
 
-            _list = randStrings.ToList();
-            _hashSet = randStrings.ToHashSet();
-            _sortedSet = new SortedSet<string>(randStrings);
+            _list = randValues.ToList();
+            _hashSet = randValues.ToHashSet();
+            _sortedSet = new SortedSet<nuint>(randValues);
 
-            // Init values to access in benchmarks
             var r = new Random(RandSeed);
             _randomKeys = Enumerable.Range(0, BenchmarkAccessCount)
                 .Select(_ => r.Next(MaxItems))
-                .Select(i => randStrings[i])
+                .Select(i => randValues[i])
                 .ToArray();
         }
 
@@ -92,6 +71,5 @@ namespace Bench_ListVsSet
                 _sortedSet.Contains(key);
             }
         }
-
     }
 }

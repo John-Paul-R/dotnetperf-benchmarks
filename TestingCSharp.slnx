@@ -3,10 +3,12 @@
   <Project Path="Bench_CaseInsensitiveStringComparison/Bench_CaseInsensitiveStringComparison.csproj" />
   <Project Path="Bench_Closures/Bench_Closures.csproj" />
   <Project Path="Bench_Dictionaries/Bench_Dictionaries.csproj" />
+  <Project Path="Bench_Dictionaries_2026/Bench_Dictionaries_2026.csproj" />
   <Project Path="Bench_DictVsNestedLoops/Bench_DictVsNestedLoops.csproj" />
   <Project Path="Bench_EnumerableAppendVsListAdd/Bench_EnumerableAppendVsListAdd.csproj" />
   <Project Path="Bench_EnumToString/Bench_EnumToString.csproj" />
-  <Project Path="Bench_ListVsSet/Bench_ListVsSet.csproj" />
+  <Project Path="Bench_ListVsSet_8ChStr/Bench_ListVsSet_8ChStr.csproj" />
+  <Project Path="Bench_ListVsSet_NUint/Bench_ListVsSet_NUint.csproj" />
   <Project Path="Bench_List_AddRange/Bench_List_AddRange.csproj" />
   <Project Path="Bench_PropertyAccessors/Bench_PropertyAccessors.csproj" />
   <Project Path="Bench_RemoveAllVsWhereToList/Bench_RemoveAllVsWhereToList.csproj" />
